@@ -56,6 +56,11 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+  assets: 
+   - assets\images\brown-gradient-background.jpg
+   - assets\images\a56894949f682c51fe22537d7aec7919.jpg
+   - assets\fonts\Alegreya_Sans_SC\AlegreyaSansSC-Bold.ttf
+   - assets\images\40309d582b25f2a6daeb82f5b8f6d970.jpg
 
   # To add assets to your application, add an assets section, like this:
   # assets:
