@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'SignUpPage/signuppage.dart';
+import 'features/authpages/SignUpPage/signup_page.dart';
 
 // The main entry point for the Flutter application.
 void main() {
