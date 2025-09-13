@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'features/authpages/SignUpPage/signup_page.dart';
+import 'initialFlashScreen/introFlashScreen.dart';
 
 // The main entry point for the Flutter application.
 void main() {
@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: const SignUpPage(),
+      home: const SplashWrapper(),
     );
   }
 }

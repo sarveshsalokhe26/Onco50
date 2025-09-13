@@ -6,7 +6,7 @@ class AlreadyHaveAccount extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 70, vertical: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 65, vertical: 8),
       decoration: BoxDecoration(
         border: Border.all(color: Colors.white, width: 1),
         color: const Color.fromRGBO(40, 45, 26, .200),

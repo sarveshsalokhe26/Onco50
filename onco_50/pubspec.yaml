@@ -36,8 +36,22 @@ dependencies:
   cupertino_icons: ^1.0.8
 
 dev_dependencies:
+  flutter_native_splash: ^2.4.0
+  flutter_launcher_icons: ^0.13.1
   flutter_test:
     sdk: flutter
+
+flutter_native_splash:
+  color: "#03311C"                # background color (hex code or name)
+  image: assets/icons/AppIcon/d48f6642-823b-4609-8433-be9bdd91f319.png # your logo (recommend 512x512 PNG)
+  android: true
+  ios: true
+  web: false
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/icons/AppIcon/d48f6642-823b-4609-8433-be9bdd91f319.png"
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -59,6 +73,7 @@ flutter:
   assets: 
    - assets\images\fb0f2369c56c81ccd0ef108d3d0d8377.jpg
    - assets\icons\AccountIcon\user.png
+   - assets\icons\AppIcon\d48f6642-823b-4609-8433-be9bdd91f319.png
    
   fonts:
     - family: PlaywriteUSModern
@@ -98,3 +113,5 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
+
+  
