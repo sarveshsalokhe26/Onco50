@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "163690254458",
+    "project_id": "onco50",
+    "storage_bucket": "onco50.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:163690254458:android:ece58dcd92b1ff4d9dabc3",
+        "android_client_info": {
+          "package_name": "com.example.onco_50"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBrOfnXtifsvW1xp4c9S61FIClVycV3bxs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

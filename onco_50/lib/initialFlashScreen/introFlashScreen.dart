@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:onco_50/features/authpages/signuppage/signup_page.dart';
+import 'package:onco_50/Features/Authpages/SignUpPage/signup_page.dart';
 
 class SplashWrapper extends StatefulWidget {
   const SplashWrapper({super.key});

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:onco_50/features/authpages/signuppage/signup_page.dart';
+import 'package:onco_50/features/authpages/SignUpPage/signup_page.dart';
 
 class NewUserSignUp extends StatelessWidget {
   const NewUserSignUp({super.key});
