@@ -17,8 +17,8 @@ class SignUpTitle extends StatelessWidget {
         children: [
           Image.asset(
             "assets/icons/AccountIcon/user.png",
-            width: 24,
-            height: 24,
+            width: 25,
+            height: 25,
           ),
           const SizedBox(width: 30),
           Stack(

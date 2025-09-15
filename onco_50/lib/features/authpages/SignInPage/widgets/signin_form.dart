@@ -12,11 +12,8 @@ class _SignUpFormState extends State<SignInForm> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _confirmPasswordController =
-      TextEditingController();
 
   bool _obscurePassword = true;
-  bool _obscureConfirmPassword = true;
 
   @override
   Widget build(BuildContext context) {
@@ -81,34 +78,6 @@ class _SignUpFormState extends State<SignInForm> {
               },
             ),
 
-            const SizedBox(height: 16),
-
-            // Confirm Password
-            CustomTextField(
-              controller: _confirmPasswordController,
-              hintText: "Confirm Password",
-              icon: Icons.lock_outline,
-              obscureText: _obscureConfirmPassword,
-              suffixIcon: IconButton(
-                icon: Icon(
-                  _obscureConfirmPassword
-                      ? Icons.visibility_off
-                      : Icons.visibility,
-                  color: const Color.fromRGBO(40, 45, 26, 1),
-                ),
-                onPressed: () => setState(
-                  () => _obscureConfirmPassword = !_obscureConfirmPassword,
-                ),
-              ),
-              validator: (value) {
-                if (value == null || value.isEmpty)
-                  return "Please confirm your password";
-                if (value != _passwordController.text)
-                  return "Passwords do not match";
-                return null;
-              },
-            ),
-
             const SizedBox(height: 24),
 
             // Sign Up Button
@@ -116,7 +85,7 @@ class _SignUpFormState extends State<SignInForm> {
               onPressed: () {
                 if (_formKey.currentState!.validate()) {
                   ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text("Signup Successful 🎉")),
+                    const SnackBar(content: Text("SignIn Successful 🎉")),
                   );
                 }
               },
@@ -133,7 +102,7 @@ class _SignUpFormState extends State<SignInForm> {
                 shadowColor: Colors.black.withOpacity(0.6),
               ),
               child: const Text(
-                "Sign up",
+                "Sign In",
                 style: TextStyle(
                   letterSpacing: 0.50,
                   fontSize: 17,

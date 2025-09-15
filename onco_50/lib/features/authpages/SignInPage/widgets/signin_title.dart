@@ -6,7 +6,7 @@ class SignInTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 70, vertical: 8),
       decoration: BoxDecoration(
         color: const Color.fromRGBO(40, 45, 26, .2),
         borderRadius: BorderRadius.circular(25),
@@ -24,7 +24,7 @@ class SignInTitle extends StatelessWidget {
           Stack(
             children: [
               Text(
-                "CREATE AN ACCOUNT",
+                "WELCOME BACK",
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
@@ -36,7 +36,7 @@ class SignInTitle extends StatelessWidget {
                 ),
               ),
               Text(
-                "CREATE AN ACCOUNT",
+                "WELCOME BACK",
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 20,

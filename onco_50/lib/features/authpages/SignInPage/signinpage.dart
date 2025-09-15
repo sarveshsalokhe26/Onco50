@@ -3,8 +3,8 @@ import 'package:onco_50/features/authpages/signInPage/widgets/signin_title.dart'
 import 'package:onco_50/features/authpages/signInPage/widgets/signin_form.dart';
 import 'package:onco_50/features/authpages/signInPage/widgets/new_usersignup.dart';
 
-class SignUpPage extends StatelessWidget {
-  const SignUpPage({super.key});
+class SignInPage extends StatelessWidget {
+  const SignInPage({super.key});
 
   @override
   Widget build(BuildContext context) {
