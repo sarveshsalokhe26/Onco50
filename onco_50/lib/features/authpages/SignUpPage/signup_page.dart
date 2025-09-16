@@ -9,6 +9,7 @@ class SignUpPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true, //Keeps keyboard open
       body: Stack(
         fit: StackFit.expand,
         children: [
@@ -37,4 +38,3 @@ class SignUpPage extends StatelessWidget {
     );
   }
 }
-

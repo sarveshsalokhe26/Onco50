@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-//Dependenccies
+//Dependencies
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -132,7 +132,7 @@ class _SignUpFormState extends State<SignUpForm> {
   }
 
   String _mapFirebaseAuthErrorToMessage(FirebaseAuthException e) {
-    // Map common FirebaseAuthException codes to user-friendly messages
+    // Maping common FirebaseAuthException codes to user-friendly messages
     switch (e.code) {
       case 'invalid-email':
         return 'The email address is not valid.';
@@ -188,7 +188,7 @@ class _SignUpFormState extends State<SignUpForm> {
       child: Form(
         key: _formKey,
         child: Column(
-          children: [
+          children: [ 
             // Email
             CustomTextField(
               controller: _emailController,
