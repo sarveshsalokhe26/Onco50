@@ -85,4 +85,5 @@ class DefaultFirebaseOptions {
     storageBucket: 'onco50.firebasestorage.app',
     measurementId: 'G-GWDM7K07HK',
   );
+
 }
