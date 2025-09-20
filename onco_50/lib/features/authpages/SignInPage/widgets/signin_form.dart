@@ -25,20 +25,21 @@ class _SignInFormState extends State<SignInForm> {
     setState(() => _isLoading = true);
 
     try {
-      final UserCredential userCredential = await _auth.signInWithEmailAndPassword(
-        email: _emailController.text.trim(),
-        password: _passwordController.text.trim(),
-      );
+      final UserCredential userCredential = await _auth
+          .signInWithEmailAndPassword(
+            email: _emailController.text.trim(),
+            password: _passwordController.text.trim(),
+          );
 
       final user = userCredential.user;
 
       if (user != null && !user.emailVerified) {
-        // Handle unverified accounts
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text("Please verify your email before signing in.")),
+          const SnackBar(
+            content: Text("Please verify your email before signing in."),
+          ),
         );
       } else {
-        // Navigate to home/dashboard
         if (!mounted) return;
         Navigator.pushReplacementNamed(context, "/home");
       }
@@ -61,14 +62,68 @@ class _SignInFormState extends State<SignInForm> {
           message = "An unexpected error occurred: ${e.message}";
       }
 
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message)));
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(message)));
     } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("Error: $e")),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text("Error: $e")));
     } finally {
       if (mounted) setState(() => _isLoading = false);
     }
+  }
+
+  Future<void> _resetPasswordDialog() async {
+    final TextEditingController resetEmailController = TextEditingController(
+      text: _emailController.text,
+    );
+
+    await showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text("Reset Password"),
+        content: TextField(
+          controller: resetEmailController,
+          decoration: const InputDecoration(
+            labelText: "Enter your email",
+            prefixIcon: Icon(Icons.mail_outline),
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text("Cancel"),
+          ),
+          ElevatedButton(
+            onPressed: () async {
+              try {
+                await _auth.sendPasswordResetEmail(
+                  email: resetEmailController.text.trim(),
+                );
+
+                if (!mounted) return;
+                Navigator.pop(context);
+
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text(
+                      "Password reset link sent! Check your email.",
+                    ),
+                  ),
+                );
+              } on FirebaseAuthException catch (e) {
+                Navigator.pop(context);
+                ScaffoldMessenger.of(
+                  context,
+                ).showSnackBar(SnackBar(content: Text("Error: ${e.message}")));
+              }
+            },
+            child: const Text("Send"),
+          ),
+        ],
+      ),
+    );
   }
 
   @override
@@ -137,7 +192,19 @@ class _SignInFormState extends State<SignInForm> {
               },
             ),
 
-            const SizedBox(height: 24),
+            // Forgot Password Button
+            Align(
+              alignment: Alignment.centerRight,
+              child: TextButton(
+                onPressed: _resetPasswordDialog,
+                child: const Text(
+                  "Forgot Password?",
+                  style: TextStyle(color: Colors.red),
+                ),
+              ),
+            ),
+
+            const SizedBox(height: 16),
 
             // Sign In Button
             _isLoading
@@ -172,4 +239,3 @@ class _SignInFormState extends State<SignInForm> {
     );
   }
 }
-
