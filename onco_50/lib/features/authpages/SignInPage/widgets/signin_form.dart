@@ -154,7 +154,7 @@ class _SignInFormState extends State<SignInForm> {
             CustomTextField(
               controller: _emailController,
               hintText: "Email",
-              icon: Icons.mail_outline,
+              imagePath: "assets/icons/MailIcon/mail.png",
               obscureText: false,
               validator: (value) {
                 if (value == null || value.isEmpty) {
@@ -171,7 +171,7 @@ class _SignInFormState extends State<SignInForm> {
             CustomTextField(
               controller: _passwordController,
               hintText: "Password",
-              icon: Icons.lock_outline,
+              imagePath: "assets/icons/MailIcon/padlock.png",
               obscureText: _obscurePassword,
               suffixIcon: IconButton(
                 icon: Icon(
@@ -199,12 +199,12 @@ class _SignInFormState extends State<SignInForm> {
                 onPressed: _resetPasswordDialog,
                 child: const Text(
                   "Forgot Password?",
-                  style: TextStyle(color: Colors.red),
+                  style: TextStyle(color: Colors.black),
                 ),
               ),
             ),
 
-            const SizedBox(height: 16),
+            const SizedBox(height: 8),
 
             // Sign In Button
             _isLoading
@@ -217,8 +217,8 @@ class _SignInFormState extends State<SignInForm> {
                         borderRadius: BorderRadius.circular(50),
                       ),
                       padding: const EdgeInsets.symmetric(
-                        horizontal: 40,
-                        vertical: 8,
+                        horizontal: 120,
+                        vertical: 12,
                       ),
                       elevation: 10,
                       shadowColor: Colors.black.withOpacity(0.6),

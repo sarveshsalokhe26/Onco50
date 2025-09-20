@@ -43,7 +43,8 @@ class _SignUpFormState extends State<SignUpForm> {
 
   Future<void> _signUp() async {
     // form validation (will also run field validators)
-    if (!_formKey.currentState!.validate()) return;
+    if (!_formKey.currentState!.validate())
+      return; //Validate the text fields and returns back if there are errors in the text field
 
     final email = _emailController.text.trim();
     final password = _passwordController.text;
@@ -64,7 +65,7 @@ class _SignUpFormState extends State<SignUpForm> {
           message: 'User not created',
         );
 
-      // 2) Create a user profile in Firestore (separate from Auth)
+      // 2) Creating a user profile in Firestore (separate from Auth)
       final userDoc = _firestore.collection('users').doc(user.uid);
 
       await userDoc.set({
@@ -194,15 +195,16 @@ class _SignUpFormState extends State<SignUpForm> {
             CustomTextField(
               controller: _emailController,
               hintText: "Email",
-              icon: Icons.mail_outline,
+              imagePath: "assets/icons/MailIcon/mail.png",
               obscureText: false,
               validator: (value) {
                 if (value == null || value.isEmpty)
                   return "Please enter your email";
                 if (!RegExp(
                   r"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$",
-                ).hasMatch(value))
+                ).hasMatch(value)) {
                   return "Enter a valid email";
+                }
                 return null;
               },
             ),
@@ -213,7 +215,7 @@ class _SignUpFormState extends State<SignUpForm> {
             CustomTextField(
               controller: _passwordController,
               hintText: "Password",
-              icon: Icons.lock_outline,
+              imagePath: "assets/icons/MailIcon/padlock.png",
               obscureText: _obscurePassword,
               suffixIcon: IconButton(
                 icon: Icon(
@@ -232,7 +234,7 @@ class _SignUpFormState extends State<SignUpForm> {
             CustomTextField(
               controller: _confirmPasswordController,
               hintText: "Confirm Password",
-              icon: Icons.lock_outline,
+              imagePath: "assets/icons/MailIcon/padlock.png",
               obscureText: _obscureConfirmPassword,
               suffixIcon: IconButton(
                 icon: Icon(

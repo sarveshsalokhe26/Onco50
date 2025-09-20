@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 class CustomTextField extends StatelessWidget {
   final TextEditingController controller;
   final String hintText;
-  final IconData icon;
+  final IconData? icon; // for Material icons
+  final String? imagePath; // for PNG icons
   final bool obscureText;
   final Widget? suffixIcon;
   final String? Function(String?)? validator;
@@ -12,7 +13,8 @@ class CustomTextField extends StatelessWidget {
     super.key,
     required this.controller,
     required this.hintText,
-    required this.icon,
+    this.icon,
+    this.imagePath,
     required this.obscureText,
     this.suffixIcon,
     this.validator,
@@ -25,7 +27,12 @@ class CustomTextField extends StatelessWidget {
       obscureText: obscureText,
       validator: validator,
       decoration: InputDecoration(
-        prefixIcon: Icon(icon, color: const Color.fromRGBO(40, 45, 26, 1)),
+        prefixIcon: imagePath != null
+            ? Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Image.asset(imagePath!, height: 22, width: 22),
+              )
+            : Icon(icon, color: const Color.fromRGBO(40, 45, 26, 1)),
         suffixIcon: suffixIcon,
         hintText: hintText,
         filled: true,

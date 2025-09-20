@@ -80,6 +80,9 @@ flutter:
    - assets\images\fb0f2369c56c81ccd0ef108d3d0d8377.jpg
    - assets\icons\AccountIcon\user.png
    - assets\icons\AppIcon\d48f6642-823b-4609-8433-be9bdd91f319.png
+   - assets\icons\MailIcon\communication.png
+   - assets\icons\MailIcon\email.png
+   - assets\icons\MailIcon\padlock.png
    
   fonts:
     - family: PlaywriteUSModern
