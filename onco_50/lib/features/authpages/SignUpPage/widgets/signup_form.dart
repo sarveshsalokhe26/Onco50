@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 
-//Dependencies
+// Dependencies
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-// import path
+// Import path
 import 'custom_text_field.dart';
+import 'package:onco_50/Features/Authpages/VerifyEmailPage/verifymailpage.dart';
 
 class SignUpForm extends StatefulWidget {
   const SignUpForm({super.key});
@@ -17,7 +18,7 @@ class SignUpForm extends StatefulWidget {
 class _SignUpFormState extends State<SignUpForm> {
   final _formKey = GlobalKey<FormState>();
 
-  // controllers
+  // Controllers
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmPasswordController =
@@ -26,7 +27,7 @@ class _SignUpFormState extends State<SignUpForm> {
   bool _obscurePassword = true;
   bool _obscureConfirmPassword = true;
 
-  // Loading state to disable multiple taps and show progress
+  // Loading state
   bool _isLoading = false;
 
   // Firebase instances
@@ -42,9 +43,7 @@ class _SignUpFormState extends State<SignUpForm> {
   }
 
   Future<void> _signUp() async {
-    // form validation (will also run field validators)
-    if (!_formKey.currentState!.validate())
-      return; //Validate the text fields and returns back if there are errors in the text field
+    if (!_formKey.currentState!.validate()) return;
 
     final email = _emailController.text.trim();
     final password = _passwordController.text;
@@ -52,89 +51,51 @@ class _SignUpFormState extends State<SignUpForm> {
     setState(() => _isLoading = true);
 
     try {
-      // 1) Create user with Firebase Auth
+      // 1) Create user
       final UserCredential cred = await _auth.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
 
       final User? user = cred.user;
-      if (user == null)
+      if (user == null) {
         throw FirebaseAuthException(
           code: 'no-user',
           message: 'User not created',
         );
+      }
 
-      // 2) Creating a user profile in Firestore (separate from Auth)
+      // 2) Add user profile to Firestore
       final userDoc = _firestore.collection('users').doc(user.uid);
-
       await userDoc.set({
         'uid': user.uid,
         'email': user.email,
         'createdAt': FieldValue.serverTimestamp(),
         'displayName': user.displayName ?? '',
         'photoUrl': user.photoURL ?? '',
-        // add other fields you need, but avoid storing sensitive info like passwords
       });
 
-      // 3) Send email verification
+      // 3) Send verification email
       if (!user.emailVerified) {
         await user.sendEmailVerification();
       }
 
-      // 4) Show a confirmation UI and guide the user to verify email
+      // 4) Redirect to verification page
       if (!mounted) return;
-      await showDialog(
-        context: context,
-        barrierDismissible: false,
-        builder: (context) => AlertDialog(
-          title: const Text('Verify your email'),
-          content: Text(
-            'A verification link has been sent to $email.\n'
-            'Please check your inbox and verify your email before signing in.',
-          ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop(); // close dialog
-                // Option: navigate to sign-in page:
-                // Navigator.of(context).pushReplacementNamed('/signin');
-              },
-              child: const Text('OK'),
-            ),
-            TextButton(
-              onPressed: () async {
-                // Resend verification (rate-limit on server side recommended)
-                try {
-                  await user.sendEmailVerification();
-                  if (!mounted) return;
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Verification email resent')),
-                  );
-                } catch (e) {
-                  if (!mounted) return;
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text('Could not resend: $e')),
-                  );
-                }
-              },
-              child: const Text('Resend'),
-            ),
-          ],
-        ),
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (_) => const VerifyEmailPage()),
       );
     } on FirebaseAuthException catch (e) {
       final message = _mapFirebaseAuthErrorToMessage(e);
       if (mounted) _showSnackBar(message);
     } catch (e) {
-      if (mounted) _showSnackBar('An unexpected error occurred. Try again.');
+      if (mounted) _showSnackBar('Unexpected error. Try again.');
     } finally {
       if (mounted) setState(() => _isLoading = false);
     }
   }
 
   String _mapFirebaseAuthErrorToMessage(FirebaseAuthException e) {
-    // Maping common FirebaseAuthException codes to user-friendly messages
     switch (e.code) {
       case 'invalid-email':
         return 'The email address is not valid.';
@@ -159,11 +120,9 @@ class _SignUpFormState extends State<SignUpForm> {
     ).showSnackBar(SnackBar(content: Text(message)));
   }
 
-  // Optional: add more robust password strength validator
   String? _passwordValidator(String? value) {
     if (value == null || value.isEmpty) return 'Please enter a password';
     if (value.length < 6) return 'Password must be at least 6 characters';
-    // add regex checks for digits/symbols/upper-case if required
     return null;
   }
 
@@ -198,8 +157,9 @@ class _SignUpFormState extends State<SignUpForm> {
               imagePath: "assets/icons/MailIcon/mail.png",
               obscureText: false,
               validator: (value) {
-                if (value == null || value.isEmpty)
+                if (value == null || value.isEmpty) {
                   return "Please enter your email";
+                }
                 if (!RegExp(
                   r"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$",
                 ).hasMatch(value)) {
@@ -248,10 +208,12 @@ class _SignUpFormState extends State<SignUpForm> {
                 ),
               ),
               validator: (value) {
-                if (value == null || value.isEmpty)
+                if (value == null || value.isEmpty) {
                   return "Please confirm your password";
-                if (value != _passwordController.text)
+                }
+                if (value != _passwordController.text) {
                   return "Passwords do not match";
+                }
                 return null;
               },
             ),

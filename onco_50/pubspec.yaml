@@ -83,6 +83,7 @@ flutter:
    - assets\icons\MailIcon\communication.png
    - assets\icons\MailIcon\email.png
    - assets\icons\MailIcon\padlock.png
+   - assets\icons\MailIcon\mail.png
    
   fonts:
     - family: PlaywriteUSModern
