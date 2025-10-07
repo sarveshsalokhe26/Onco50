@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:onco_50/Features/Authpages/SignUpPage/signup_page.dart';
+import 'package:onco_50/Features/Authpages/AuthWrapper.dart/authwrapper.dart';
 
 class SplashWrapper extends StatefulWidget {
   const SplashWrapper({super.key});
@@ -26,10 +26,12 @@ class _SplashWrapperState extends State<SplashWrapper>
 
     _controller.forward();
 
+    //After Splash Wrapper redirecting the user to the authWrapper instead of the signup page to check whetherhes already logged in or not 
     Future.delayed(const Duration(seconds: 3), () {
-      Navigator.of(
-        context,
-      ).pushReplacement(MaterialPageRoute(builder: (_) => const SignUpPage()));
+      if (!mounted) return;
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (_) => const AuthWrapper()),
+      );
     });
   }
 
@@ -42,7 +44,7 @@ class _SplashWrapperState extends State<SplashWrapper>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white, // same green as splash
+      backgroundColor: Colors.white,
       body: FadeTransition(
         opacity: _animation,
         child: Center(
@@ -56,3 +58,4 @@ class _SplashWrapperState extends State<SplashWrapper>
     );
   }
 }
+
