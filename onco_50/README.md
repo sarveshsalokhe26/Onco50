@@ -1,16 +1,35 @@
-# onco_50
+Onco50
 
-A new Flutter project.
+Onco50 is a Flutter-based mobile app created to support breast cancer patients and their loved ones with care, community, and guidance. It provides tools to help manage medications, connect with others who understand your journey, and access resources tailored to your needs — so no one has to face this challenge alone.
 
-## Getting Started
+Features :
 
-This project is a starting point for a Flutter application.
+> User Authentication
+Secure sign up and sign in with Firebase Authentication
+Email verification to protect your account
 
-A few resources to get you started if this is your first Flutter project:
+> Personalized User Profiles
+Add a display name and profile picture
+Store and manage your information safely in Firebase Firestore
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+> Community & Peer Support
+Join supportive group activities and events
+Share stories, experiences, and updates with others on similar journeys
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+> Chat & Messaging (coming soon)
+Real-time chat with patients and caregivers
+Community wall for encouragement and peer support
+
+> Health & Medication Tools
+Pill concentration predictor for safe, personalized guidance
+
+> Medication reminders and follow-up alerts
+Educational resources to empower informed decisions
+
+
+Tech Stack : 
+
+Frontend: Flutter (Dart)
+Backend: Firebase (Authentication, Firestore, Storage)
+State Management: Flutter’s setState (plans to migrate to Provider/Riverpod)
+UI/UX: Custom Material Design components for intuitive, accessible design
