@@ -12,7 +12,7 @@ class CustomButton extends StatelessWidget {
       onPressed: onPressed,
       child: Text(label),
       style: ButtonStyle(
-        backgroundColor: MaterialStateProperty.all(Colors.pink),
+        backgroundColor: WidgetStateProperty.all(Colors.pink),
       ),
     );
   }

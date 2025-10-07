@@ -76,7 +76,14 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
-  assets: 
+  assets:
+   - assets\NavigationBarIcons\predictive-chart.png
+   - assets\NavigationBarIcons\medical-record.png
+   - assets\NavigationBarIcons\donor-consent-form.png
+   - assets\NavigationBarIcons\dashboard (5).png
+   - assets\NavigationBarIcons\user (1).png
+   - assets\NavigationBarIcons\home.png
+   - assets\HomePageBagroundImage\14e7dfd9d58b6949dc93ed6e77c6980f.jpg
    - assets\images\fb0f2369c56c81ccd0ef108d3d0d8377.jpg
    - assets\icons\AccountIcon\user.png
    - assets\icons\AppIcon\d48f6642-823b-4609-8433-be9bdd91f319.png
@@ -90,6 +97,10 @@ flutter:
       fonts:
         - asset: assets\fonts\PlaywriteUSModern-VariableFont_wght.ttf
 
+    - family: AlegreyaSansSC
+      fonts:
+        - asset: assets/fonts/AlegreyaSansSC-Bold.ttf
+          weight: 700
        
 
 
