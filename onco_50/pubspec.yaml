@@ -77,6 +77,7 @@ flutter:
   # the material Icons class.
   uses-material-design: true
   assets:
+   - assets\NavigationBarIcons\dashboard (6).png
    - assets\NavigationBarIcons\predictive-chart.png
    - assets\NavigationBarIcons\medical-record.png
    - assets\NavigationBarIcons\donor-consent-form.png

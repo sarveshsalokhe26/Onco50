@@ -201,7 +201,7 @@ class Onco50HomePage extends StatelessWidget {
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
                     fontSize: 15,
-                    fontFamily: 'AlegreyaSansSC',
+                    fontFamily: 'Roboto',
                   ),
                 ),
               ],
